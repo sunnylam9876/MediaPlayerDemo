@@ -2,10 +2,12 @@ package com.example.mediaplayerdemo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar songPrgs;
     private static int oTime =0, sTime =0, eTime =0, fTime = 5000, bTime = 5000;
     private Handler hdlr = new Handler();
+
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         songPrgs = findViewById(R.id.sBar);
         songPrgs.setClickable(false);
         pausebtn.setEnabled(false);
+
+        button = findViewById(R.id.button);
 
         playbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +115,14 @@ public class MainActivity extends AppCompatActivity {
                 if(!playbtn.isEnabled()){
                     playbtn.setEnabled(true);
                 }
+            }
+        });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                startActivity(intent);
             }
         });
     }
